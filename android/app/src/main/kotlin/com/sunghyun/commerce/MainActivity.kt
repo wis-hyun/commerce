@@ -1,0 +1,5 @@
+package com.sunghyun.commerce
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity : FlutterActivity()
