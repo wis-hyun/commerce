@@ -51,8 +51,13 @@ Flutter로 구현한 간단한 **커머스(쇼핑) 앱 UI**입니다.
 
 ## 📸 Screenshots  
 
-![](screenshots/1.png)  
-![](screenshots/2.png)  
-![](screenshots/3.png)  
-![](screenshots/4.png)  
+<p align="center">
+  <img src="screenshots/1.png" width="45%" />
+  <img src="screenshots/2.png" width="45%" />
+</p>
+
+<p align="center">
+  <img src="screenshots/3.png" width="45%" />
+  <img src="screenshots/4.png" width="45%" />
+</p>
    
