@@ -1,4 +1,4 @@
-import 'package:commerce/screen/category/widget/category_widgets.dart';
+import 'package:commerce/screen/category/category_widgets.dart';
 import 'package:flutter/material.dart';
 
 import 'category_view_model.dart';

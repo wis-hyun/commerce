@@ -1,5 +1,7 @@
-import 'package:commerce/screen/home/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:commerce/screen/home/home_screen.dart';
+import 'package:commerce/screen/category/category_screen.dart';
+import 'package:commerce/screen/cart/cart_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -9,48 +11,58 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  int _currentIndex = 0;
 
-  int currentIndex = 0;
+  final List<Widget> _screens = const [
+    HomeScreen(),
+    CategoryScreen(),
+    CartScreen(),
+  ];
+
+  final List<String> _titles = const [
+    "Fashion Commerce",
+    "Category",
+    "Cart",
+  ];
 
   @override
   Widget build(BuildContext context) {
-
-    String appBarTitle = '';
-    if(currentIndex == 0){
-      appBarTitle = 'Fashion Commerce';
-    } else if (currentIndex == 1){
-      appBarTitle = 'Category';
-    } else {
-      appBarTitle = 'Cart';
-    }
-
-
     return Scaffold(
-      appBar: AppBar(title: Text(appBarTitle, style: TextStyle(color: Colors.black),),),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        title: Text(
+          _titles[_currentIndex],
+          style: const TextStyle(color: Colors.black),
+        ),
+        elevation: 0,
+      ),
       body: IndexedStack(
-        index: currentIndex,
-        children: [
-          HomeScreen(),
-          Container(color: Colors.deepPurple,),
-          Container(color: Colors.deepPurpleAccent,),
+        index: _currentIndex,
+        children: _screens,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (value) {
+          setState(() {
+            _currentIndex = value;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.category_outlined),
+            label: 'category',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart),
+            label: 'cart',
+          ),
         ],
       ),
-      bottomNavigationBar: navigationBar(),
     );
   }
-
-  BottomNavigationBar navigationBar(){
-    return BottomNavigationBar(items: [
-      BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
-      BottomNavigationBarItem(icon: Icon(Icons.category_outlined), label: 'category'),
-      BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'cart'),
-    ],
-    currentIndex: currentIndex,
-      onTap: (value) {
-        currentIndex = value;
-        setState(() {});
-      },
-    );
-  }
-
 }

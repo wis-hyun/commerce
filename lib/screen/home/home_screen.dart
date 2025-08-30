@@ -1,5 +1,5 @@
 import 'package:commerce/asset_path.dart';
-import 'package:commerce/model/product_model.dart';
+import 'package:commerce/screen/home/home_view_model.dart';
 import 'package:commerce/screen/home/home_widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -12,26 +12,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  List<String> imageList = [
-    AssetPath.cloth1,
-    AssetPath.cloth2,
-    AssetPath.cloth3,
-    AssetPath.cloth4
-  ];
-
-  List<ProductModel> newProductList = [
-    ProductModel(AssetPath.productJacketJean, 'Jacket Jean', 100000, 31, 4.3, false),
-    ProductModel(AssetPath.productManJacket, 'Man Jacket', 200000, 31, 3.3, false),
-    ProductModel(AssetPath.productWomen, 'Women Jacket', 350000, 31, 4.5, false),
-    ProductModel(AssetPath.productManStreet, 'Man Jacket', 90000, 31, 3.0, false),
-    ProductModel(AssetPath.productShoes, 'Shoes', 250000, 31, 4.3, false),
-  ];
-
-  List<ProductModel> discountList = [
-    ProductModel(AssetPath.productManSuit,'Man Suit', 2500000, 20, 2.5, false),
-    ProductModel(AssetPath.productWomen, 'Women Jacket', 300000, 31, 4.5, false),
-
-  ];
+  final HomeViewModel _viewModel = HomeViewModel();
 
   int currentIndex = 0;
 
@@ -48,8 +29,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 setState(() {});
               },
               children: [
-                ...List.generate(imageList.length, (index) {
-                  return Image.asset(imageList[index], fit: BoxFit.cover);
+                ...List.generate(_viewModel.imageList.length, (index) {
+                  return Image.asset(_viewModel.imageList[index], fit: BoxFit.cover);
                 },)
               ],
             ),
@@ -57,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(height: 24,),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(imageList.length,(index){
+            children: List.generate(_viewModel.imageList.length,(index){
               return AnimatedContainer(
                 duration: Duration(milliseconds: 300),
                 height: 10,
@@ -84,14 +65,14 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(height: 24,),
           HomeWidgets.subTitle('New things'),
           SizedBox(height: 10,),
-          HomeWidgets.productHorizontal(newProductList),
+          HomeWidgets.productHorizontal(_viewModel.newProductList),
           HomeWidgets.subTitle('Event'),
           SizedBox(height: 10,),
           SizedBox(height: 300, width: double.infinity,child: Image.asset(AssetPath.event, fit: BoxFit.cover,)),
           SizedBox(height: 50),
           HomeWidgets.subTitle('Today Discount'),
           SizedBox(height: 10,),
-          HomeWidgets.productHorizontal(discountList),
+          HomeWidgets.productHorizontal(_viewModel.discountList),
         ],
       ),
     );
