@@ -1,4 +1,5 @@
 import 'package:commerce/screen/main/main_screen.dart';
+import 'package:commerce/util/custom_scroll_behavior.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,6 +18,7 @@ void main() {
           primarySwatch: Colors.blue
         ),
         home: MainScreen(),
+        scrollBehavior: CustomScrollBehavior(),
       );
     }
   }
